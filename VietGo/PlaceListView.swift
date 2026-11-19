@@ -1,77 +1,125 @@
 import SwiftUI
 
+/// Danh sách địa điểm dùng chung: thẻ ảnh + hàng biểu tượng liên hệ,
+/// chip lọc (Tất cả / Gần nhất / Đang mở cửa), nút xem bản đồ, tải thêm trang.
 struct PlaceListView: View {
-    let province: Province
+    let title: String
     let db: PlaceDatabase
+    /// Trả về trang kết quả tại offset; nil = danh sách tĩnh đã nạp sẵn.
+    let fetchPage: ((Int) -> [Place])?
 
-    @State private var keyword: String = ""
-    @State private var results: [Place] = []
+    @State private var places: [Place] = []
+    @State private var canLoadMore = false
+    @State private var filter: Filter = .all
+    @ObservedObject private var loc = LocationManager.shared
+
+    enum Filter: String, CaseIterable {
+        case all = "Tất cả"
+        case nearest = "Gần nhất"
+        case openNow = "Đang mở cửa"
+    }
+
+    init(title: String, db: PlaceDatabase, places: [Place]) {
+        self.title = title
+        self.db = db
+        self.fetchPage = nil
+        _places = State(initialValue: places)
+        _canLoadMore = State(initialValue: false)
+    }
+
+    init(title: String, db: PlaceDatabase, fetchPage: @escaping (Int) -> [Place]) {
+        self.title = title
+        self.db = db
+        self.fetchPage = fetchPage
+    }
 
     var body: some View {
-        VStack {
-            HStack {
-                Image(systemName: "magnifyingglass").foregroundColor(.secondary)
-                TextField("Tìm địa điểm (gõ không dấu cũng được)", text: $keyword)
-                    .onChange(of: keyword) { _ in reload() }
-            }
-            .padding(10)
-            .background(Color(.secondarySystemBackground))
-            .cornerRadius(10)
-            .padding(.horizontal)
-            .padding(.top, 8)
-
-            List {
-                Section {
-                    if results.isEmpty {
-                        Text(keyword.isEmpty
-                             ? "Tỉnh này chưa có dữ liệu địa điểm. Gói dữ liệu đang được xây dựng — mục An toàn bên dưới vẫn dùng được."
-                             : "Không tìm thấy địa điểm nào khớp.")
-                            .foregroundColor(.secondary)
-                    }
-                    ForEach(results) { place in
+        VStack(spacing: 0) {
+            filterBar
+            if visible.isEmpty {
+                Spacer()
+                Text(emptyText)
+                    .font(.subheadline).foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 32)
+                Spacer()
+            } else {
+                List {
+                    ForEach(visible) { place in
                         NavigationLink(destination: PlaceDetailView(place: place, db: db)) {
-                            VStack(alignment: .leading, spacing: 3) {
-                                Text(place.name).font(.headline)
-                                Text("\(place.categoryName) · \(place.statusText)")
-                                    .font(.subheadline).foregroundColor(.secondary)
-                            }
+                            PlaceCardRow(place: place)
                         }
                     }
-                }
-                Section {
-                    NavigationLink(destination: SafetyView(province: province, db: db)) {
-                        Label("An toàn & khẩn cấp trong tỉnh", systemImage: "cross.case")
+                    if canLoadMore && filter == .all {
+                        Button("Xem thêm địa điểm") { loadMore() }
+                            .frame(maxWidth: .infinity)
                     }
                 }
-            }
-            .listStyle(InsetGroupedListStyle())
-        }
-        .navigationBarTitle(province.name, displayMode: .inline)
-        .onAppear { reload() }
-    }
-
-    private func reload() {
-        let folded = SearchFold.fold(keyword)
-        results = db.search(provinceID: province.id, foldedQuery: folded)
-    }
-}
-
-struct SafetyView: View {
-    let province: Province
-    let db: PlaceDatabase
-
-    var body: some View {
-        List(db.safetyPoints(provinceID: province.id)) { point in
-            VStack(alignment: .leading, spacing: 3) {
-                Text("\(point.typeText) — \(point.name)").font(.headline)
-                if let phone = point.phone {
-                    Text(phone).font(.title3).foregroundColor(.blue)
-                }
-                if let note = point.note {
-                    Text(note).font(.subheadline).foregroundColor(.secondary)
-                }
+                .listStyle(PlainListStyle())
             }
         }
-        .navigationBarTitle("An toàn", displayMode: .inline)
+        .navigationBarTitle(title, displayMode: .inline)
+        .navigationBarItems(trailing:
+            NavigationLink(destination: MapView(places: Array(visible.prefix(300)), db: db)) {
+                Image(systemName: "map")
+            })
+        .onAppear {
+            if places.isEmpty { loadMore() }
+            loc.requestIfNeeded()
+        }
+    }
+
+    private var filterBar: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                ForEach(Filter.allCases, id: \.self) { f in
+                    Button(action: { filter = f }) {
+                        Text(f.rawValue)
+                            .font(.subheadline)
+                            .padding(.horizontal, 14).padding(.vertical, 7)
+                            .background(filter == f ? Color.green : Color(.systemGray6))
+                            .foregroundColor(filter == f ? .white : .primary)
+                            .clipShape(Capsule())
+                    }
+                }
+                if filter == .nearest && loc.location == nil {
+                    Text("Cần cấp quyền vị trí để sắp xếp theo khoảng cách")
+                        .font(.caption).foregroundColor(.secondary)
+                }
+            }
+            .padding(.horizontal)
+            .padding(.vertical, 8)
+        }
+    }
+
+    private var visible: [Place] {
+        switch filter {
+        case .all:
+            return places
+        case .openNow:
+            return places.filter { place in
+                if place.status == "closed_perm" || place.status == "closed_temp" { return false }
+                return OpenHours.state(place: place)?.isOpen ?? false
+            }
+        case .nearest:
+            guard loc.location != nil else { return places }
+            return places.sorted { (loc.distanceMeters(to: $0) ?? 1e12) < (loc.distanceMeters(to: $1) ?? 1e12) }
+        }
+    }
+
+    private var emptyText: String {
+        switch filter {
+        case .openNow:
+            return "Không có địa điểm nào đang mở trong số đã tải, hoặc giờ mở cửa chưa có dữ liệu.\nHãy thử xem thêm hoặc bỏ lọc."
+        default:
+            return "Chưa có địa điểm nào."
+        }
+    }
+
+    private func loadMore() {
+        guard let fetchPage = fetchPage else { return }
+        let page = fetchPage(places.count)
+        places.append(contentsOf: page)
+        canLoadMore = page.count >= 100
     }
 }
