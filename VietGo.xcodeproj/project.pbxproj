@@ -1,0 +1,280 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FF0000000000000000000001 /* VietGoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000001 /* VietGoApp.swift */; };
+		FF0000000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000002 /* ContentView.swift */; };
+		FF0000000000000000000003 /* PlaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000003 /* PlaceListView.swift */; };
+		FF0000000000000000000004 /* PlaceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000004 /* PlaceDetailView.swift */; };
+		FF0000000000000000000005 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000005 /* Models.swift */; };
+		FF0000000000000000000006 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000006 /* Database.swift */; };
+		FF0000000000000000000007 /* SearchFold.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000007 /* SearchFold.swift */; };
+		FF0000000000000000000008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000008 /* Assets.xcassets */; };
+		FF0000000000000000000009 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000001 /* LaunchScreen.storyboard */; };
+		FF000000000000000000000A /* vietnam.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EE000000000000000000000A /* vietnam.sqlite */; };
+		FF000000000000000000000B /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EE000000000000000000000B /* libsqlite3.tbd */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BB0000000000000000000002 /* VietGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VietGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE0000000000000000000001 /* VietGoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VietGoApp.swift; sourceTree = "<group>"; };
+		EE0000000000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EE0000000000000000000003 /* PlaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListView.swift; sourceTree = "<group>"; };
+		EE0000000000000000000004 /* PlaceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailView.swift; sourceTree = "<group>"; };
+		EE0000000000000000000005 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		EE0000000000000000000006 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		EE0000000000000000000007 /* SearchFold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFold.swift; sourceTree = "<group>"; };
+		EE0000000000000000000008 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EE0000000000000000000009 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EE000000000000000000000A /* vietnam.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "vietnam.sqlite"; sourceTree = "<group>"; };
+		EE000000000000000000000B /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DD0000000000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF000000000000000000000B /* libsqlite3.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA0000000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000003 /* VietGo */,
+				AA0000000000000000000004 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000004 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BB0000000000000000000002 /* VietGo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000003 /* VietGo */ = {
+			isa = PBXGroup;
+			children = (
+				EE0000000000000000000001 /* VietGoApp.swift */,
+				EE0000000000000000000002 /* ContentView.swift */,
+				EE0000000000000000000003 /* PlaceListView.swift */,
+				EE0000000000000000000004 /* PlaceDetailView.swift */,
+				EE0000000000000000000005 /* Models.swift */,
+				EE0000000000000000000006 /* Database.swift */,
+				EE0000000000000000000007 /* SearchFold.swift */,
+				EE0000000000000000000008 /* Assets.xcassets */,
+				AB0000000000000000000001 /* LaunchScreen.storyboard */,
+				AA0000000000000000000005 /* Resources */,
+			);
+			path = VietGo;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000005 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EE000000000000000000000A /* vietnam.sqlite */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BB0000000000000000000001 /* VietGo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC0000000000000000000004 /* Build configuration list for PBXNativeTarget "VietGo" */;
+			buildPhases = (
+				DD0000000000000000000001 /* Sources */,
+				DD0000000000000000000002 /* Frameworks */,
+				DD0000000000000000000003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VietGo;
+			productName = VietGo;
+			productReference = BB0000000000000000000002 /* VietGo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA0000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					BB0000000000000000000001 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+				};
+			};
+			buildConfigurationList = CC0000000000000000000001 /* Build configuration list for PBXProject "VietGo" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA0000000000000000000002;
+			productRefGroup = AA0000000000000000000004 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BB0000000000000000000001 /* VietGo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DD0000000000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF0000000000000000000009 /* LaunchScreen.storyboard in Resources */,
+				FF0000000000000000000008 /* Assets.xcassets in Resources */,
+				FF000000000000000000000A /* vietnam.sqlite in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DD0000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF0000000000000000000001 /* VietGoApp.swift in Sources */,
+				FF0000000000000000000002 /* ContentView.swift in Sources */,
+				FF0000000000000000000003 /* PlaceListView.swift in Sources */,
+				FF0000000000000000000004 /* PlaceDetailView.swift in Sources */,
+				FF0000000000000000000005 /* Models.swift in Sources */,
+				FF0000000000000000000006 /* Database.swift in Sources */,
+				FF0000000000000000000007 /* SearchFold.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AB0000000000000000000001 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EE0000000000000000000009 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CC0000000000000000000002 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CC0000000000000000000003 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		CC0000000000000000000005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGNING_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = VIETGO;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vietgo.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CC0000000000000000000006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGNING_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = VIETGO;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vietgo.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CC0000000000000000000001 /* Build configuration list for PBXProject "VietGo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC0000000000000000000002 /* Debug */,
+				CC0000000000000000000003 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC0000000000000000000004 /* Build configuration list for PBXNativeTarget "VietGo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC0000000000000000000005 /* Debug */,
+				CC0000000000000000000006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AA0000000000000000000001 /* Project object */;
+}
