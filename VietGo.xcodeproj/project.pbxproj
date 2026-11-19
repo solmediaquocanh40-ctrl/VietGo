@@ -236,6 +236,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = VIETGO;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "VIETGO dùng vị trí để sắp xếp địa điểm theo khoảng cách gần nhất.";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -243,7 +244,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 0.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vietgo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -263,6 +264,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = VIETGO;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "VIETGO dùng vị trí để sắp xếp địa điểm theo khoảng cách gần nhất.";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -270,7 +272,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 0.3.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vietgo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
