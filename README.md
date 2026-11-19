@@ -1,10 +1,10 @@
-# VIETGO — Khung app iOS (Giai đoạn 0) · v0.2.0
+# VIETGO — App du lịch offline · v0.3.0
 
-Khung app tối thiểu để test trên máy thật bằng **TrollStore**: mở app → chọn tỉnh trong danh sách **34 tỉnh/thành chia 3 miền** → xem danh sách địa điểm đọc từ gói SQLite toàn quốc đóng kèm → tìm kiếm không dấu (FTS5) → xem chi tiết (giờ hôm nay, khoảng giá, nguồn & độ tin cậy theo trường) → mục An toàn & khẩn cấp.
+Bản đầu tiên có **giao diện đầy đủ + dữ liệu thật**: trang chủ (tìm kiếm toàn quốc, danh mục, "Hot tháng này", "Địa điểm nổi bật"), thẻ địa điểm có ảnh/dải biểu tượng liên hệ, trang chi tiết đầy đủ, bản đồ chấm điểm, lưu địa điểm và báo sai thông tin. Dữ liệu thật của **Lâm Đồng sau sáp nhập: 38.117 địa điểm** nạp từ OpenStreetMap + Overture Maps, phủ lớp tín hiệu hot từ TikTok/Facebook/YouTube.
 
 ## Cách build trên GitHub
 
-1. Đẩy toàn bộ cây source này lên repo (nhớ kèm `.github/workflows/build.yml` — file workflow cũng được gửi riêng với tên `build-0.2.0.yml` khi giao source).
+1. Đẩy toàn bộ cây source này lên repo (nhớ kèm `.github/workflows/build.yml` — file workflow cũng được gửi riêng với tên `build-0.3.0.yml` khi giao source). Nếu đè lên bản cũ, **xoá file cũ trên repo nếu có tên khác**; gói dữ liệu vẫn là `VietGo/Resources/vietnam.sqlite` (bản mới ~55 MB).
 2. Vào tab **Actions** → chạy workflow **Build VIETGO (TrollStore IPA)** (tự chạy khi push lên `main`, hoặc bấm Run workflow).
 3. Build xong, tải artifact **VietGo-TrollStore-ipa** → được file `VietGo-TrollStore.ipa`.
 4. Mở file `.ipa` bằng **TrollStore** trên iPhone để cài.
@@ -13,16 +13,27 @@ Runner dùng `macos-latest` + Xcode mới nhất trên runner. Build ở chế �
 
 > Lưu ý: sửa workflow xong phải **commit mới**; nút Re-run trên GitHub chạy lại workflow của commit cũ.
 
+## Có gì trong bản 0.3.0
+
+- **Trang chủ**: ô tìm kiếm toàn quốc (tìm theo tên không dấu, món, địa chỉ, **số điện thoại**), hàng 7 danh mục kèm số lượng, băng **Hot tháng này** (13 điểm, ghi rõ căn cứ "Nổi trên TikTok/Facebook · tháng 11/2026"), băng **Địa điểm nổi bật** (48 điểm hạng A), danh sách 34 tỉnh theo 3 miền.
+- **Thẻ địa điểm**: ảnh thật của chính địa điểm khi có ảnh Wikimedia (30 điểm nổi tiếng); nơi chưa có ảnh hiện nền màu theo danh mục (không lấy ảnh quán khác minh hoạ). Dòng trạng thái mở/đóng tính từ giờ mở cửa; nơi đã đóng thì ảnh xám + chữ đỏ. Hàng biểu tượng: gọi (mở chọn **Gọi điện / Chat Zalo**), Facebook, Website, Google Maps — chỉ hiện kênh nào có dữ liệu.
+- **Chi tiết**: 4 nút Liên hệ / Chỉ đường (Apple Maps hoặc Google Maps) / Chia sẻ / Đã lưu; địa chỉ, giờ cả tuần, tiện ích, nguồn & độ tin cậy từng trường; nút **Báo sai thông tin** (lưu trên máy theo cơ chế hộp thư đi).
+- **Danh sách**: chip lọc Tất cả / Gần nhất (cần quyền vị trí) / Đang mở cửa, tải thêm theo trang, nút xem **bản đồ** chấm điểm (nền bản đồ Apple, cần mạng).
+- **Dữ liệu Lâm Đồng (38.117 điểm)**: SĐT 77,5% · Facebook 87,2% · địa chỉ 92,1% (74,5% có số nhà/đường) · website 21,5% · giờ mở cửa mới 0,8% (điểm yếu đã biết — nguồn mở rất ít ghi giờ; bổ sung dần qua kiểm chứng và đóng góp người dùng). 33 tỉnh còn lại có khung + số khẩn cấp, địa điểm nạp ở các đợt sau.
+- **Đã lưu** giữ lại cả khi cập nhật gói dữ liệu mới (app tự sao gói sang vùng ghi được và bảo toàn phần người dùng).
+
 ## Công nghệ
 
-- Swift + SwiftUI, **iOS tối thiểu 14.0** (chỉ dùng tập API iOS 14: NavigationView, StateObject, onChange).
-- Dữ liệu: SQLite đọc trực tiếp qua C API (`import SQLite3`, link `libsqlite3.tbd`) — bản khung chủ động **không thêm phụ thuộc ngoài** (kể cả GRDB) để build CI chắc chắn nhất; việc có chuyển sang GRDB hay không sẽ quyết ở Giai đoạn 1.
-- Gói toàn quốc `VietGo/Resources/vietnam.sqlite` sinh từ `schema-v1.sql` (xem thư mục tài liệu VIETGO): đủ 34 tỉnh/thành chia 3 miền (Bắc 15, Trung 11, Nam 8), tỉnh hợp nhất ghi rõ các đơn vị cũ hợp thành; mọi tỉnh đều có sẵn 3 số khẩn cấp 112/113/115 ở mục An toàn. **Dữ liệu địa điểm hiện mới có 14 điểm mẫu của Lâm Đồng** (Đà Lạt) — 33 tỉnh còn lại đang trống địa điểm, nạp thật ở Bước 5 (OSM + Overture) và các đợt triển khai trong tài liệu tổng hợp toàn quốc.
-- Màn chi tiết địa điểm đã có dòng **số điện thoại bấm để gọi** và dòng địa chỉ cũ (sau sáp nhập) khi dữ liệu có — gói mẫu hiện chưa có số điện thoại thật nào, trường sẽ có số khi nạp dữ liệu thật.
+- Swift + SwiftUI, **iOS tối thiểu 14.0** (chỉ dùng tập API iOS 14: NavigationView, TabView, MapKit SwiftUI, StateObject, onChange; không AsyncImage — tự tải + cache ảnh).
+- Dữ liệu: SQLite qua C API (`import SQLite3`) — chủ động **không thêm phụ thuộc ngoài** để build CI chắc chắn; chuyển GRDB hay không quyết ở Giai đoạn 1.
+- Gói `VietGo/Resources/vietnam.sqlite` sinh từ `schema-v1.sql` + 2 cột tiến hoá cộng thêm (`places.facebook`, `places.hot_basis`). Pipeline nạp dữ liệu nằm ở thư mục `import/` trong bộ tài liệu VIETGO (OSM qua Geofabrik + Overpass lấy ranh giới tỉnh mới; Overture bản 2026-11-18.0 qua DuckDB; gộp/khử trùng; lớp biên tập hot/famous; ảnh Wikimedia kèm giấy phép).
 
-## Dữ liệu mẫu — CHƯA kiểm chứng
+## Hạn chế đã biết (nói thẳng)
 
-Toàn bộ dữ liệu địa điểm trong gói hiện tại chỉ để **test khung hiển thị và tìm kiếm**: tọa độ gần đúng theo trí nhớ bản đồ, **giá và giờ mở cửa là số minh họa**, có một homestay giả lập ghi rõ "Mẫu". Không dùng dữ liệu này cho người dùng thật; dữ liệu thật sẽ nạp bằng pipeline OSM + Overture ở Bước 5 của Giai đoạn 0.
+- Chưa có bản đồ **offline** (spike PMTiles là Bước 3 của Giai đoạn 0) — bản đồ hiện tại dùng nền Apple nên cần mạng; dữ liệu địa điểm thì offline hoàn toàn.
+- Chưa tải gói/delta từ server (Bước 6), chưa tài khoản/đánh giá (Giai đoạn 2), thông báo đẩy không chạy trên bản TrollStore.
+- Giá vé/giá món: dữ liệu mở gần như không có → app để trống thay vì bịa số; bổ sung từ nguồn chính thức + kiểm chứng ở giai đoạn sau.
+- AppIcon đang trống — TrollStore vẫn cài và chạy bình thường. Bundle ID: `com.vietgo.app`.
 
 ## Cấu trúc
 
@@ -30,20 +41,20 @@ Toàn bộ dữ liệu địa điểm trong gói hiện tại chỉ để **test
 VietGo.xcodeproj          Project Xcode (scheme: VietGo)
 VietGo/
   VietGoApp.swift          Điểm vào app
-  ContentView.swift        Danh sách tỉnh + PackStore (mở gói SQLite)
-  PlaceListView.swift      Danh sách địa điểm + ô tìm + mục An toàn
-  PlaceDetailView.swift    Chi tiết: giờ hôm nay, giá, nguồn & tin cậy
-  Models.swift             Province / Place / FieldMeta / SafetyPoint
-  Database.swift           Lớp đọc SQLite (C API, chỉ đọc)
+  ContentView.swift        4 thẻ điều hướng + danh sách tỉnh + Giới thiệu
+  HomeView.swift           Trang chủ + màn hình tìm kiếm
+  PlaceListView.swift      Danh sách dùng chung (lọc, phân trang, bản đồ)
+  PlaceCardView.swift      Thẻ địa điểm + hàng biểu tượng liên hệ + trạng thái
+  PlaceDetailView.swift    Chi tiết + phiếu báo sai thông tin
+  ProvinceView.swift       Trang tỉnh + An toàn & khẩn cấp
+  MapView.swift            Bản đồ chấm điểm (MapKit)
+  SavedView.swift          Địa điểm đã lưu
+  Helpers.swift            Giờ mở cửa, liên kết liên hệ, tải ảnh, vị trí
+  Models.swift             Province / Category / Place / FieldMeta / SafetyPoint
+  Database.swift           Lớp SQLite (C API) + sao gói sang vùng ghi được
   SearchFold.swift         Gấp dấu tiếng Việt (cùng quy tắc name_search)
   Assets.xcassets          AppIcon (chưa có hình) + AccentColor
   Base.lproj/              LaunchScreen.storyboard
-  Resources/vietnam.sqlite  Gói dữ liệu toàn quốc (34 tỉnh)
+  Resources/vietnam.sqlite  Gói dữ liệu toàn quốc (34 tỉnh; Lâm Đồng đủ 38.117 điểm)
 .github/workflows/build.yml  Workflow build IPA TrollStore
 ```
-
-## Hạn chế của bản khung (biết trước)
-
-- Chưa có bản đồ (spike PMTiles là Bước 3), chưa tải gói từ server (gói đóng sẵn trong app), chưa đồng bộ delta (Bước 6), chưa tài khoản/đánh giá/báo sai (Giai đoạn 2).
-- AppIcon đang trống (chưa có hình) — TrollStore vẫn cài và chạy bình thường.
-- Bundle ID tạm: `com.vietgo.app` (đổi được trong project settings, không ảnh hưởng test TrollStore).
