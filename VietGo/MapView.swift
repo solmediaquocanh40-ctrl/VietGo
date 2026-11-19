@@ -42,7 +42,7 @@ struct MapView: View {
                             .frame(width: 56)
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                         VStack(alignment: .leading, spacing: 2) {
-                            Text(sel.name).font(.subheadline).fontWeight(.semibold)
+                            Text(sel.name).font(.subheadline.weight(.semibold))
                                 .foregroundColor(.primary).lineLimit(1)
                             Text(sel.categoryName).font(.caption).foregroundColor(.secondary)
                             StatusLine(place: sel)

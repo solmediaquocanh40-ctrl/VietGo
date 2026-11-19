@@ -141,7 +141,7 @@ struct HomeView: View {
                 let inRegion = provinces.filter { $0.region == region }
                 if !inRegion.isEmpty {
                     Text(inRegion[0].regionText.uppercased())
-                        .font(.caption).fontWeight(.semibold).foregroundColor(.secondary)
+                        .font(.caption.weight(.semibold)).foregroundColor(.secondary)
                         .padding(.horizontal).padding(.top, 6)
                     ForEach(inRegion) { province in
                         NavigationLink(destination: ProvinceView(province: province, db: db)) {

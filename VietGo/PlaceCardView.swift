@@ -92,7 +92,7 @@ struct TrustPill: View {
     var body: some View {
         if place.trust > 0 {
             Text("Tin cậy \(place.trust)/100")
-                .font(.caption2).fontWeight(.medium)
+                .font(.caption2.weight(.medium))
                 .padding(.horizontal, 8).padding(.vertical, 3)
                 .background(place.trust >= 70 ? Color.green.opacity(0.15) : Color(.systemGray5))
                 .foregroundColor(place.trust >= 70 ? .green : .secondary)
@@ -116,7 +116,7 @@ struct PlaceCardRow: View {
             VStack(alignment: .leading, spacing: 5) {
                 HStack(alignment: .top, spacing: 6) {
                     Text(place.name)
-                        .font(.subheadline).fontWeight(.semibold)
+                        .font(.subheadline.weight(.semibold))
                         .lineLimit(2)
                     Spacer(minLength: 0)
                     TrustPill(place: place)
@@ -154,7 +154,7 @@ struct PlaceCardTile: View {
             PlacePhoto(place: place, height: 120)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
             Text(place.name)
-                .font(.subheadline).fontWeight(.semibold)
+                .font(.subheadline.weight(.semibold))
                 .lineLimit(2)
                 .frame(height: 36, alignment: .topLeading)
             Text(place.categoryName + (place.priceText.map { " · \($0)" } ?? ""))

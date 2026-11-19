@@ -68,7 +68,7 @@ struct PlaceDetailView: View {
         VStack(alignment: .leading, spacing: 6) {
             HStack(alignment: .top, spacing: 8) {
                 Text(place.name)
-                    .font(.title3).fontWeight(.bold)
+                    .font(.title3.weight(.bold))
                 Spacer(minLength: 0)
                 TrustPill(place: place)
             }
@@ -156,7 +156,7 @@ struct PlaceDetailView: View {
             if !lines.isEmpty {
                 VStack(alignment: .leading, spacing: 4) {
                     Label("Giờ mở cửa", systemImage: "clock")
-                        .font(.subheadline).fontWeight(.semibold)
+                        .font(.subheadline.weight(.semibold))
                     ForEach(lines, id: \.0) { line in
                         HStack {
                             Text(line.0).font(.subheadline).foregroundColor(.secondary)
@@ -176,7 +176,7 @@ struct PlaceDetailView: View {
             if !place.facilityLabels.isEmpty {
                 VStack(alignment: .leading, spacing: 6) {
                     Label("Tiện ích", systemImage: "checkmark.circle")
-                        .font(.subheadline).fontWeight(.semibold)
+                        .font(.subheadline.weight(.semibold))
                     Text(place.facilityLabels.joined(separator: " · "))
                         .font(.subheadline).foregroundColor(.secondary)
                 }
@@ -188,7 +188,7 @@ struct PlaceDetailView: View {
     private func infoRow(_ symbol: String, _ title: String, _ value: String) -> some View {
         VStack(alignment: .leading, spacing: 2) {
             Label(title, systemImage: symbol)
-                .font(.subheadline).fontWeight(.semibold)
+                .font(.subheadline.weight(.semibold))
             Text(value).font(.subheadline).foregroundColor(.secondary)
         }
     }
@@ -196,7 +196,7 @@ struct PlaceDetailView: View {
     private var gallerySection: some View {
         VStack(alignment: .leading, spacing: 8) {
             Divider()
-            Text("Ảnh").font(.subheadline).fontWeight(.semibold)
+            Text("Ảnh").font(.subheadline.weight(.semibold))
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 10) {
                     ForEach(images) { img in
@@ -221,7 +221,7 @@ struct PlaceDetailView: View {
     private var metaSection: some View {
         VStack(alignment: .leading, spacing: 8) {
             Divider()
-            Text("Nguồn & độ tin cậy").font(.subheadline).fontWeight(.semibold)
+            Text("Nguồn & độ tin cậy").font(.subheadline.weight(.semibold))
             ForEach(metas) { meta in
                 HStack(alignment: .top) {
                     VStack(alignment: .leading, spacing: 1) {
