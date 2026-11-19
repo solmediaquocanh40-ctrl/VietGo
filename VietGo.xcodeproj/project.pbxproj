@@ -14,6 +14,12 @@
 		FF0000000000000000000005 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000005 /* Models.swift */; };
 		FF0000000000000000000006 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000006 /* Database.swift */; };
 		FF0000000000000000000007 /* SearchFold.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000007 /* SearchFold.swift */; };
+		FF0000000000000000000008 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000008 /* Helpers.swift */; };
+		FF0000000000000000000009 /* PlaceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000009 /* PlaceCardView.swift */; };
+		FF000000000000000000000A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000000000000000000000A /* HomeView.swift */; };
+		FF000000000000000000000B /* ProvinceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000000000000000000000B /* ProvinceView.swift */; };
+		FF000000000000000000000C /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000000000000000000000C /* MapView.swift */; };
+		FF000000000000000000000D /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000000000000000000000D /* SavedView.swift */; };
 		FF0000000000000000000008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000008 /* Assets.xcassets */; };
 		FF0000000000000000000009 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB0000000000000000000001 /* LaunchScreen.storyboard */; };
 		FF000000000000000000000A /* vietnam.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EE000000000000000000000A /* vietnam.sqlite */; };
@@ -29,6 +35,12 @@
 		EE0000000000000000000005 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		EE0000000000000000000006 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		EE0000000000000000000007 /* SearchFold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFold.swift; sourceTree = "<group>"; };
+		EE0000000000000000000008 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		EE0000000000000000000009 /* PlaceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCardView.swift; sourceTree = "<group>"; };
+		EE000000000000000000000A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		EE000000000000000000000B /* ProvinceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceView.swift; sourceTree = "<group>"; };
+		EE000000000000000000000C /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		EE000000000000000000000D /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
 		EE0000000000000000000008 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE0000000000000000000009 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE000000000000000000000A /* vietnam.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = "vietnam.sqlite"; sourceTree = "<group>"; };
@@ -73,6 +85,12 @@
 				EE0000000000000000000005 /* Models.swift */,
 				EE0000000000000000000006 /* Database.swift */,
 				EE0000000000000000000007 /* SearchFold.swift */,
+				EE0000000000000000000008 /* Helpers.swift */,
+				EE0000000000000000000009 /* PlaceCardView.swift */,
+				EE000000000000000000000A /* HomeView.swift */,
+				EE000000000000000000000B /* ProvinceView.swift */,
+				EE000000000000000000000C /* MapView.swift */,
+				EE000000000000000000000D /* SavedView.swift */,
 				EE0000000000000000000008 /* Assets.xcassets */,
 				AB0000000000000000000001 /* LaunchScreen.storyboard */,
 				AA0000000000000000000005 /* Resources */,
@@ -166,6 +184,12 @@
 				FF0000000000000000000005 /* Models.swift in Sources */,
 				FF0000000000000000000006 /* Database.swift in Sources */,
 				FF0000000000000000000007 /* SearchFold.swift in Sources */,
+				FF0000000000000000000008 /* Helpers.swift in Sources */,
+				FF0000000000000000000009 /* PlaceCardView.swift in Sources */,
+				FF000000000000000000000A /* HomeView.swift in Sources */,
+				FF000000000000000000000B /* ProvinceView.swift in Sources */,
+				FF000000000000000000000C /* MapView.swift in Sources */,
+				FF000000000000000000000D /* SavedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +235,7 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = VIETGO;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "VIETGO dùng vị trí để sắp xếp địa điểm theo khoảng cách gần nhất.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -218,7 +243,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vietgo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -237,6 +262,7 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = VIETGO;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "VIETGO dùng vị trí để sắp xếp địa điểm theo khoảng cách gần nhất.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -244,7 +270,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.vietgo.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
