@@ -15,6 +15,13 @@ jobs:
       - name: Show Xcode version
         run: xcodebuild -version
 
+      - name: Unpack data pack (vietnam.sqlite)
+        run: |
+          cd VietGo/Resources
+          unzip -o vietnam.sqlite.zip
+          rm -f vietnam.sqlite.zip
+          ls -lh vietnam.sqlite
+
       - name: Build app (unsigned, for TrollStore)
         run: |
           xcodebuild build \
