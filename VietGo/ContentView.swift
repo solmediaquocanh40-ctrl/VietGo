@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Gốc điều hướng 0.3.0: 4 thẻ — Trang chủ, Tỉnh thành, Đã lưu, Giới thiệu.
+/// Gốc điều hướng: 4 thẻ — Trang chủ, Khám phá (Danh mục | Tỉnh thành), Đã lưu, Giới thiệu.
 struct ContentView: View {
     @StateObject private var store = PackStore()
 
@@ -10,14 +10,15 @@ struct ContentView: View {
                 TabView {
                     NavigationView { HomeView(db: db) }
                         .tabItem { Label("Trang chủ", systemImage: "house.fill") }
-                    NavigationView { ProvinceListView(db: db) }
-                        .tabItem { Label("Tỉnh thành", systemImage: "map.fill") }
+                    NavigationView { ExploreView(db: db) }
+                        .tabItem { Label("Khám phá", systemImage: "safari.fill") }
                     NavigationView { SavedView(db: db) }
                         .tabItem { Label("Đã lưu", systemImage: "bookmark.fill") }
                     NavigationView { AboutView(db: db) }
                         .tabItem { Label("Giới thiệu", systemImage: "info.circle.fill") }
                 }
                 .accentColor(.green)
+                .preferredColorScheme(.light) // 0.3.1: khoá giao diện sáng như demo đã duyệt (máy để chế độ tối app vẫn sáng)
             } else {
                 Text("Không đọc được gói dữ liệu.")
                     .foregroundColor(.secondary)
@@ -26,7 +27,63 @@ struct ContentView: View {
     }
 }
 
-/// Danh sách 34 tỉnh theo 3 miền (thẻ Tỉnh thành).
+/// Thẻ Khám phá (0.3.1): thanh chuyển Danh mục | Tỉnh thành ngay trong thẻ,
+/// thay cho danh sách 34 tỉnh trải dài ở trang chủ trước đây.
+struct ExploreView: View {
+    let db: PlaceDatabase
+    @State private var segment = 0
+    @State private var categories: [Category] = []
+    private let dataProvinceID = "lam-dong"
+
+    var body: some View {
+        VStack(spacing: 0) {
+            Picker("Khám phá", selection: $segment) {
+                Text("Danh mục").tag(0)
+                Text("Tỉnh thành").tag(1)
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding()
+            if segment == 0 {
+                categoryList
+            } else {
+                ProvinceListView(db: db)
+            }
+        }
+        .navigationBarTitle("Khám phá", displayMode: .large)
+        .onAppear { categories = db.categories(provinceID: dataProvinceID) }
+    }
+
+    private var categoryList: some View {
+        List {
+            Section(header: Text("Danh mục tại Lâm Đồng — tỉnh đang có dữ liệu"),
+                    footer: Text("Các tỉnh khác đang được nạp dữ liệu dần; xem danh sách đầy đủ ở mục Tỉnh thành.")) {
+                ForEach(categories.filter { $0.count > 0 }) { cat in
+                    NavigationLink(destination:
+                        PlaceListView(title: cat.nameVi, db: db,
+                                      fetchPage: { offset in
+                                          db.browse(provinceID: dataProvinceID,
+                                                    categoryID: cat.id, offset: offset)
+                                      })) {
+                        HStack(spacing: 12) {
+                            Image(systemName: cat.icon)
+                                .font(.system(size: 16))
+                                .foregroundColor(.white)
+                                .frame(width: 34, height: 34)
+                                .background(CategoryStyle.color(for: cat.id))
+                                .clipShape(RoundedRectangle(cornerRadius: 9))
+                            Text(cat.nameVi)
+                            Spacer()
+                            Text("\(cat.count)").foregroundColor(.secondary)
+                        }
+                    }
+                }
+            }
+        }
+        .listStyle(InsetGroupedListStyle())
+    }
+}
+
+/// Danh sách 34 tỉnh theo 3 miền (mục Tỉnh thành trong thẻ Khám phá).
 struct ProvinceListView: View {
     let db: PlaceDatabase
     private let regionOrder = ["bac", "trung", "nam"]
@@ -61,7 +118,6 @@ struct ProvinceListView: View {
             }
         }
         .listStyle(InsetGroupedListStyle())
-        .navigationBarTitle("Tỉnh thành", displayMode: .large)
     }
 }
 
@@ -71,7 +127,7 @@ struct AboutView: View {
 
     var body: some View {
         List {
-            Section(header: Text("VIETGO 0.3.0")) {
+            Section(header: Text("VIETGO 0.3.2")) {
                 Text("Bản thử nghiệm nội bộ (cài qua TrollStore). Dữ liệu địa điểm thật của tỉnh Lâm Đồng (gồm Đà Lạt, Phan Thiết – Mũi Né, Tà Đùng sau sáp nhập); 33 tỉnh còn lại sẽ nạp dần.")
                     .font(.subheadline)
             }
