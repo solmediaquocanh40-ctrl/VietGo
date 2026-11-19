@@ -93,6 +93,23 @@ enum OpenHours {
     }
 }
 
+// MARK: - Màu theo danh mục (một bảng màu dùng chung cả app)
+
+enum CategoryStyle {
+    static func color(for categoryID: String) -> Color {
+        switch categoryID {
+        case "an-uong": return Color.orange
+        case "ca-phe": return Color(red: 0.6, green: 0.4, blue: 0.2) // nâu (Color.brown là iOS 15+)
+        case "luu-tru": return Color.blue
+        case "tham-quan": return Color.green
+        case "mua-sam": return Color.purple
+        case "giai-tri": return Color.pink
+        case "dich-vu": return Color.gray
+        default: return Color(red: 0.19, green: 0.69, blue: 0.78) // teal (Color.teal là iOS 15+)
+        }
+    }
+}
+
 // MARK: - Liên hệ
 
 enum ContactLinks {
@@ -195,18 +212,7 @@ struct PlacePhoto: View {
         .clipped()
     }
 
-    private var color: Color {
-        switch place.categoryId {
-        case "an-uong": return Color.orange
-        case "ca-phe": return Color(red: 0.6, green: 0.4, blue: 0.2) // nâu (Color.brown là iOS 15+)
-        case "luu-tru": return Color.blue
-        case "tham-quan": return Color.green
-        case "mua-sam": return Color.purple
-        case "giai-tri": return Color.pink
-        case "dich-vu": return Color.gray
-        default: return Color(red: 0.19, green: 0.69, blue: 0.78) // teal (Color.teal là iOS 15+)
-        }
-    }
+    private var color: Color { CategoryStyle.color(for: place.categoryId) }
 
     private var icon: String {
         Category(id: place.categoryId, nameVi: place.categoryName, count: 0).icon

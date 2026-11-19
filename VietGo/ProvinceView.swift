@@ -58,8 +58,14 @@ struct ProvinceView: View {
                                               db.browse(provinceID: province.id,
                                                         categoryID: cat.id, offset: offset)
                                           })) {
-                            HStack {
-                                Label(cat.nameVi, systemImage: cat.icon)
+                            HStack(spacing: 12) {
+                                Image(systemName: cat.icon)
+                                    .font(.system(size: 15))
+                                    .foregroundColor(.white)
+                                    .frame(width: 30, height: 30)
+                                    .background(CategoryStyle.color(for: cat.id))
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                Text(cat.nameVi).foregroundColor(.primary)
                                 Spacer()
                                 Text("\(cat.count)").foregroundColor(.secondary)
                             }

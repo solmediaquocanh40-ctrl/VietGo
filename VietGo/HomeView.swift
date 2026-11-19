@@ -1,15 +1,14 @@
 import SwiftUI
 
 /// Trang chủ theo demo 0.3.0 đã duyệt: ô tìm kiếm toàn quốc, hàng danh mục,
-/// băng "Hot tháng này" (ghi rõ căn cứ), "Địa điểm nổi bật" và khám phá tỉnh.
+/// băng "Hot tháng này" (ghi rõ căn cứ) và "Địa điểm nổi bật".
+/// (34 tỉnh thành đã chuyển sang thẻ Khám phá từ 0.3.1 theo yêu cầu của Quoc.)
 struct HomeView: View {
     let db: PlaceDatabase
-    @State private var provinces: [Province] = []
     @State private var categories: [Category] = []
     @State private var hot: [Place] = []
     @State private var featured: [Place] = []
 
-    private let regionOrder = ["bac", "trung", "nam"]
     private let dataProvinceID = "lam-dong"
 
     var body: some View {
@@ -19,13 +18,11 @@ struct HomeView: View {
                 if !categories.isEmpty { categorySection }
                 if !hot.isEmpty { hotSection }
                 if !featured.isEmpty { featuredSection }
-                provinceSection
             }
             .padding(.vertical, 16)
         }
         .navigationBarTitle("VIETGO", displayMode: .large)
         .onAppear {
-            provinces = db.provinces()
             categories = db.categories(provinceID: dataProvinceID)
             hot = db.hotPlaces()
             featured = db.featuredPlaces(limit: 20)
@@ -65,11 +62,14 @@ struct HomeView: View {
                                           })) {
                             VStack(spacing: 6) {
                                 Image(systemName: cat.icon)
-                                    .font(.system(size: 20))
+                                    .font(.system(size: 22))
                                     .foregroundColor(.white)
-                                    .frame(width: 52, height: 52)
-                                    .background(Color.green)
-                                    .clipShape(Circle())
+                                    .frame(width: 54, height: 54)
+                                    .background(LinearGradient(
+                                        gradient: Gradient(colors: [CategoryStyle.color(for: cat.id).opacity(0.75),
+                                                                    CategoryStyle.color(for: cat.id)]),
+                                        startPoint: .topLeading, endPoint: .bottomTrailing))
+                                    .clipShape(RoundedRectangle(cornerRadius: 16))
                                 Text(cat.nameVi)
                                     .font(.caption).foregroundColor(.primary)
                                     .lineLimit(1)
@@ -133,42 +133,6 @@ struct HomeView: View {
         }
     }
 
-    private var provinceSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Khám phá 34 tỉnh thành")
-                .font(.headline).padding(.horizontal)
-            ForEach(regionOrder, id: \.self) { region in
-                let inRegion = provinces.filter { $0.region == region }
-                if !inRegion.isEmpty {
-                    Text(inRegion[0].regionText.uppercased())
-                        .font(.caption.weight(.semibold)).foregroundColor(.secondary)
-                        .padding(.horizontal).padding(.top, 6)
-                    ForEach(inRegion) { province in
-                        NavigationLink(destination: ProvinceView(province: province, db: db)) {
-                            HStack {
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(province.name).foregroundColor(.primary)
-                                    if province.placeCount > 0 {
-                                        Text("\(province.placeCount) địa điểm")
-                                            .font(.caption).foregroundColor(.secondary)
-                                    } else {
-                                        Text("Chưa có dữ liệu — sắp bổ sung")
-                                            .font(.caption).foregroundColor(.secondary)
-                                    }
-                                }
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .font(.caption).foregroundColor(.secondary)
-                            }
-                            .padding(.horizontal)
-                            .padding(.vertical, 8)
-                        }
-                        Divider().padding(.leading)
-                    }
-                }
-            }
-        }
-    }
 }
 
 /// Tìm kiếm toàn quốc: theo tên (không dấu), số điện thoại, địa chỉ.
