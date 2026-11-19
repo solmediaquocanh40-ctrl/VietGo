@@ -198,13 +198,13 @@ struct PlacePhoto: View {
     private var color: Color {
         switch place.categoryId {
         case "an-uong": return Color.orange
-        case "ca-phe": return Color.brown
+        case "ca-phe": return Color(red: 0.6, green: 0.4, blue: 0.2) // nâu (Color.brown là iOS 15+)
         case "luu-tru": return Color.blue
         case "tham-quan": return Color.green
         case "mua-sam": return Color.purple
         case "giai-tri": return Color.pink
         case "dich-vu": return Color.gray
-        default: return Color.teal
+        default: return Color(red: 0.19, green: 0.69, blue: 0.78) // teal (Color.teal là iOS 15+)
         }
     }
 
