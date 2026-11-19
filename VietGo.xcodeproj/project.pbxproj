@@ -14,10 +14,10 @@
 		FF0000000000000000000005 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000005 /* Models.swift */; };
 		FF0000000000000000000006 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000006 /* Database.swift */; };
 		FF0000000000000000000007 /* SearchFold.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000007 /* SearchFold.swift */; };
-		FF0000000000000000000008 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000008 /* Helpers.swift */; };
-		FF0000000000000000000009 /* PlaceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000009 /* PlaceCardView.swift */; };
-		FF000000000000000000000A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000000000000000000000A /* HomeView.swift */; };
-		FF000000000000000000000B /* ProvinceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000000000000000000000B /* ProvinceView.swift */; };
+		FF000000000000000000000E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000000000000000000000E /* Helpers.swift */; };
+		FF000000000000000000000F /* PlaceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000000000000000000000F /* PlaceCardView.swift */; };
+		FF0000000000000000000010 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000010 /* HomeView.swift */; };
+		FF0000000000000000000011 /* ProvinceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000011 /* ProvinceView.swift */; };
 		FF000000000000000000000C /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000000000000000000000C /* MapView.swift */; };
 		FF000000000000000000000D /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE000000000000000000000D /* SavedView.swift */; };
 		FF0000000000000000000008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE0000000000000000000008 /* Assets.xcassets */; };
@@ -35,10 +35,10 @@
 		EE0000000000000000000005 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		EE0000000000000000000006 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		EE0000000000000000000007 /* SearchFold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFold.swift; sourceTree = "<group>"; };
-		EE0000000000000000000008 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		EE0000000000000000000009 /* PlaceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCardView.swift; sourceTree = "<group>"; };
-		EE000000000000000000000A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		EE000000000000000000000B /* ProvinceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceView.swift; sourceTree = "<group>"; };
+		EE000000000000000000000E /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		EE000000000000000000000F /* PlaceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCardView.swift; sourceTree = "<group>"; };
+		EE0000000000000000000010 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		EE0000000000000000000011 /* ProvinceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceView.swift; sourceTree = "<group>"; };
 		EE000000000000000000000C /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		EE000000000000000000000D /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
 		EE0000000000000000000008 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -85,10 +85,10 @@
 				EE0000000000000000000005 /* Models.swift */,
 				EE0000000000000000000006 /* Database.swift */,
 				EE0000000000000000000007 /* SearchFold.swift */,
-				EE0000000000000000000008 /* Helpers.swift */,
-				EE0000000000000000000009 /* PlaceCardView.swift */,
-				EE000000000000000000000A /* HomeView.swift */,
-				EE000000000000000000000B /* ProvinceView.swift */,
+				EE000000000000000000000E /* Helpers.swift */,
+				EE000000000000000000000F /* PlaceCardView.swift */,
+				EE0000000000000000000010 /* HomeView.swift */,
+				EE0000000000000000000011 /* ProvinceView.swift */,
 				EE000000000000000000000C /* MapView.swift */,
 				EE000000000000000000000D /* SavedView.swift */,
 				EE0000000000000000000008 /* Assets.xcassets */,
@@ -184,10 +184,10 @@
 				FF0000000000000000000005 /* Models.swift in Sources */,
 				FF0000000000000000000006 /* Database.swift in Sources */,
 				FF0000000000000000000007 /* SearchFold.swift in Sources */,
-				FF0000000000000000000008 /* Helpers.swift in Sources */,
-				FF0000000000000000000009 /* PlaceCardView.swift in Sources */,
-				FF000000000000000000000A /* HomeView.swift in Sources */,
-				FF000000000000000000000B /* ProvinceView.swift in Sources */,
+				FF000000000000000000000E /* Helpers.swift in Sources */,
+				FF000000000000000000000F /* PlaceCardView.swift in Sources */,
+				FF0000000000000000000010 /* HomeView.swift in Sources */,
+				FF0000000000000000000011 /* ProvinceView.swift in Sources */,
 				FF000000000000000000000C /* MapView.swift in Sources */,
 				FF000000000000000000000D /* SavedView.swift in Sources */,
 			);
